@@ -34,7 +34,12 @@ const orderSchema = new Schema(
          order_at : {
             type : Date,
             default : Date.now
+         },
+         Status : {
+            type: String,
+            require: true
          }
+         
     }
 )
 

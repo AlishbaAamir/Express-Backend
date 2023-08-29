@@ -72,8 +72,8 @@ const config = {
 
 const addOrders = async(req, res) => {
     
-      const {items, CustomerEmail, CustomerName, CoutomerAddress, CustomerContact, DelieveryCharges, TotalBill} = req.body 
-if(!items || !CustomerEmail || !CustomerName || !CoutomerAddress || !CustomerContact || !DelieveryCharges || !TotalBill)
+      const {items, CustomerEmail, CustomerName, CoutomerAddress, CustomerContact, DelieveryCharges, TotalBill, Status} = req.body 
+if(!items || !CustomerEmail || !CustomerName || !CoutomerAddress || !CustomerContact || !DelieveryCharges || !TotalBill || !Status)
 {
     res.status(403).json({message: "Invalid payload"})
 }
@@ -82,7 +82,7 @@ else{
 try {
 
     await connect (process.env.MONGO_URI)
-    const order= await Order.create({items, CustomerEmail, CustomerName, CoutomerAddress, CustomerContact, DelieveryCharges, TotalBill})
+    const order= await Order.create({items, CustomerEmail, CustomerName, CoutomerAddress, CustomerContact, DelieveryCharges, TotalBill, Status})
    
    // Email
    const transporter = nodemailer.createTransport({
